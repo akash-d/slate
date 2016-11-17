@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>PCD Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="PCD_Doc" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="android">Android</h1>
+
+<p>Predictive Content Delivery (PCD) SDK prepositions content, based on user preferences and policies set up between the client and server. There is absolutely no need for a developer to initiate downloads as prepositioning operates on a notification basis. Downloads also continue whether the app is active in the foreground, running in the background, or entirely closed. The SDK acts as a data cache, providing access to content along with its current download state. </p>
+
+<p>Configuring your project to support these features is covered below.</p>
+
+<h2 id="prerequisites-for-using-the-sdk-obtaining-key-for-gcm">Prerequisites for using the SDK (Obtaining key for GCM)</h2>
+
+<p>To generate a key from Google&rsquo;s firebase console using GCM in android app, follow these instructions:</p>
+
+<ul>
+<li>Go to <a href="https://console.firebase.google.com/project/_/settings/cloudmessaging">firebase console</a>.</li>
+<li>Create a new project.</li>
+<li>It will give you a server-key that will be used by backend developers when creating push requests</li>
+<li>You also need to save the Sender ID given here that will be used on Android for receiving push notifications.</li>
+</ul>
+
+<p><img src="images/1.png?raw=true" /></p>
+
+<h2 id="file-location-to-add-dependencies">File Location to Add Dependencies</h2>
+
+<p>Android projects quite often rely on 3rd party libraries and SDKs, and have thier own way to add the dependencies.</p>
+
+<p>You need to add these 3rd party dependencies to a file named build.gradle(Module:app) which is present by default in Android (Refer to the image, the file is highlighted in blue). This file is located in a folder named &lsquo;app&rsquo;.</p>
+
+<p><img src="images/2.png?raw=true" /></p>
+
+<h2 id="dependencies-to-be-added">Dependencies to be Added</h2>
+
+<p>To start using the SDK, you will be required to add the following dependencies:</p>
+
+<p><code>
+compile &#39;com.google.android.gms:playservicesbase:7.0.0&#39;<br>
+compile &#39;com.google.android.gms:playservicesgcm:7.0.0&#39;<br>
+compile &#39;com.google.android.gms:playservicesads:7.0.0&#39;<br>
+compile(name:&#39;voc­sdk­release­{version}&#39;, ext:&#39;aar&#39;) <br>
+</code></p>
+
+<p>The requirement is that, the project should be implementing API 15 or greater. These dependencies include Google Play services, Google Cloud Messaging and all the dependencies required for PCD.</p>
+
+<p><img src="images/3.png?raw=true" /></p>
+
+<h2 id="component-details-file">Component Details File</h2>
+
+<p>All the details of the components being used in the project are present in a file known as AndroidManifest.xml, which is more like an index. It contains information about all the Activity, Broadcast Receiver, User Permissions and more.. To locate this file, you need to navigate to app&gt;src&gt;main.</p>
+
+<p><img src="images/4.png?raw=true" /></p>
+
+<h2 id="add-permissions">Add Permissions</h2>
+
+<p>For proper functioning of the SDK, you need some permissions from the user. Permissions like Internet, Access Network State, WiFi State Access and the permission to write to external storage. All these permissions are required to be added to the <em>AndroidManifest.xml</em> file.</p>
+
+<p>Following are the permissions:</p>
+
+<p><code>
+uses-permission android:name=&quot;android.permission.INTERNET&quot;
+uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;
+uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;
+uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;
+</code></p>
+
+<p><img src="images/5.png?raw=true" /></p>
+
+<h2 id="add-a-receiver-and-a-provider">Add a Receiver and a Provider</h2>
+
+<p>For the SDK to work correctly, we need to add a receiver to listen to Voc Status messages and a provider to access the cached content.</p>
+
+<p>It can be added in <em>AndroidManifest.xml</em> inside the application tag.</p>
+
+<p><img src="images/66.png?raw=true" /></p>
+
+<h1 id="ios">iOS</h1>
+
+<p>Predictive Content Delivery (PCD) SDK prepositions content, based on user preferences and policies set up between the client and server. There is absolutely no need for a developer to initiate downloads as prepositioning operates on a notification basis. Downloads also continue whether the app is active in the foreground, running in the background, or entirely closed. The SDK acts as a data cache, providing access to content along with its current download state. Configuring your project to support these features is covered below.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>The PCD SDK requires <strong>iOS 8</strong> or higher.</p>
+
+<p>For registration, a <strong>PCD SDK license key</strong> is a mandate.</p>
+
+<p>The application&rsquo;s product name <strong>(Project → Choose target → Build Settings → Packaging → Product name)</strong> must match the name provided on the PCD Web portal SDK license page. The portal field for this is <strong>&ldquo;iOS Application ID.&rdquo;</strong> The app must enable Background Execution and Remote Notifications in order to preposition the content.</p>
+
+<p><img src="images/7.png?raw=true" /></p>
+
+<h2 id="add-the-framework">Add the framework</h2>
+
+<ul>
+<li>Download the PCD SDK and unzip it in a folder under your project, e.g. <em>~/myproject/pcd</em>sdk._</li>
+<li>Navigate to <strong>VocSdk.framework</strong> under <em>~/myproject/pcd_sdk/iphoneos/</em> and copy it to your project folder, e.g. ~/myproject/VocSdk.framework. This is done so that the framework is available before the first build and there-on you can add it to your project. On each build afterward it will be copied here by the copy_vocsdk build phase script.</li>
+<li>Add the framework to your <strong>Xcode</strong> project.
+
+<ul>
+<li>Open your project in Xcode.</li>
+<li>Open the <strong>File</strong> menu.</li>
+<li>Click <strong>Add Files</strong> to</li>
+<li>Choose <strong>~/myproject/VocSdk.framework</strong></li>
+</ul></li>
+</ul>
+
+<p><img src="images/8.png?raw=true" /></p>
+
+<h2 id="link-the-sdk-to-the-project">Link the SDK to the project</h2>
+
+<p>Now, you will need to link the SDK to your project, follow these steps:</p>
+
+<p>By clicking the project name in the Project navigator, open <strong>project settings.</strong>
+Click the <strong>General tab.</strong>
+Under <strong>Embedded Binaries,</strong> click &rsquo;+&rsquo; and choose <strong>VocSdk.framework</strong>
+Click Add.</p>
+
+<p><img src="images/9.png?raw=true" /></p>
+
+<h2 id="add-a-build-phase-to-project-settings">Add a build phase to Project settings</h2>
+
+<p>Before you go ahead building your app, the correct framework for your platform simulator or device must be copied into the right place and this requires a build phase to be added to your project settings.</p>
+
+<p>Follow these set of instructions:</p>
+
+<ul>
+<li>Choose your <strong>build target* in Project Settings, then click on **Build Phases.</strong></li>
+<li>Next, to add a new build phase, click the &rsquo;+&rsquo; and choose <strong>&#39;New Run Script Phase.&rsquo;</strong></li>
+<li>Drag this build phase to position it after Target Dependencies.</li>
+<li>Optionally, single click its name and rename it to <strong>copy_vocsdk.</strong></li>
+<li>To expand the copy_vocsdk row, click the arrow.</li>
+<li>Leave the default shell setting of <em>/bin/sh.</em></li>
+<li>The following script needs to be added to the script area.</li>
+</ul>
+
+<p>The &ldquo;copy_vocsdk.sh&rdquo; path is relative to your .xcodeproj file and will need modification depending on where you unzipped it (in this example, it is pcd_sdk).</p>
+
+<p><code>. ./pcd_sdk/copy_vocsdk.sh &quot;${PROJECT_DIR}/pcd_sdk&quot;</code></p>
+
+<p>The second parameter, &ldquo;${PROJECT_DIR}/pcd_sdk&rdquo;, is the location of the /iphoneos and /iphonesimulator folders from the distribution archive.</p>
+
+<p>In this example, the folder structure is as follows: <br>
+/myproject/myproject.xcodeproj /myproject/pcd_sdk/copy_vocsdk.sh /myproject/pcd_sdk/iphoneos/ /myproject/pcd_sdk/iphonesimulator/ </p>
+
+<p>The script will copy the correct VocSdk.framework to /myproject/ folder at the start of every build.</p>
+
+<p>This is how the build phase will finally look.</p>
+
+<p><img src="images/10.png?raw=true" /></p>
+
+<h2 id="integrate-your-ios">Integrate your iOS</h2>
+
+<p>Integrating with your iOS Application - Including the SDK.</p>
+
+<p>Follow these instructions to integrate your iOS.</p>
+
+<p>Wherever the SDK is required, import the VocSdk header in any of the class files. For your app, you will need to define a single VocService object.</p>
+
+<p>Create your VocService object in the app delegate to make the SDK available early in the app lifecycle and to simplify access to the VocService from other classes.</p>
+
+<p><strong>#import @property (strong, nonatomic) id vocService;</strong></p>
+
+<h3 id="initialization">Initialization</h3>
+
+<p>The SDK is initialized by the VocServiceFactory call</p>
+
+<p>createServiceWithDelegate:delegateQueue:options:error:.</p>
+
+<p>To begin prepositioning files as early as possible, initialization and registration should take place early in the app lifecycle. The recommended place for this is in AppDelegate&rsquo;s application:didFinishLaunchingWithOptions:</p>
+
+<p>The create call inputs a reference to the SDK delegate as well as a configuration options dictionary. To respond to SDK activity, the SDK delegate is the class you need to designate.</p>
+
+<p>The example below is inserted into <strong>AppDelegate.m.</strong> It initializes the SDK and tells it that AppDelegate will be the delegate to handle SDK messages.</p>
+
+<p><code>
+(BOOL)application:(UIApplication *)application <br>didFinishLaunchingWithOptions:(NSDictionary *)launchOptions <br>
+{ <br>
+NSError *error = nil; <br>
+self.vocService = [VocServiceFactory createServiceWithDelegate:self <br>delegateQueue:[NSOperationQueue mainQueue] options:nil error:&amp;error]; <br>
+if (!self.vocService)<br>
+{ <br>
+// error handling ­ could not start service 7 <br>
+return NO; <br>
+} <br>
+// app initialized return YES; <br>
+} 
+</code></p>
+
+<p><img alt="Integrate your iOS" src="images/11.png?raw=true" /></p>
+
+<p>Need Help? 
+If questions come up along the way, check out the frequently asked questions. Still puzzled? Visit our community discussion forums, probably there are others who have already bumped into the same issue as yours.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
