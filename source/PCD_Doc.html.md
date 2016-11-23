@@ -21,7 +21,7 @@ To generate a key from Google's firebase console using GCM in android app, follo
 * It will give you a server-key that will be used by backend developers when creating push requests
 * You also need to save the Sender ID given here that will be used on Android for receiving push notifications.
 
-![](1.png?raw=true)
+![Prerequisites for using the SDK](1.png)
 
 
 ## File Location to Add Dependencies
@@ -30,7 +30,7 @@ Android projects quite often rely on 3rd party libraries and SDKs, and have thie
 
 You need to add these 3rd party dependencies to a file named build.gradle(Module:app) which is present by default in Android (Refer to the image, the file is highlighted in blue). This file is located in a folder named 'app'.
 
-![](2.png?raw=true)
+![File Location to Add Dependencies](2.png)
 
 
 ## Dependencies to be Added
