@@ -41,9 +41,9 @@ content_id":"5907", "content_provider_id":"cnbc"}'
 -k 'https://23.79.234.237/ingest/v1/getActivityStatusById' 
 ```
 
-An access token and a content provider ID are provided to content providers who are authorized to use the API .
+Those authorized to use the API are provided with an access token and a content provider ID.
 
-Also, to submit content to the PCD as an aggregation of multiple content providers, you must have an access token for each content provider. To ensure a successful request, you must use each access token with the corresponding provider.
+To submit content to PCD as an aggregation of multiple content providers, you must have an access token for each content provider. To ensure a successful request, you must use each access token with the corresponding provider.
 
 You must use both values in the body of any post call to authenticate the API request.
 
@@ -91,13 +91,13 @@ Response 400 (application/json)
 
 ## GETTING A CATEGORY LIST
 
-When using the API to add or update content, you must know the list of available categories as the initial PCD application release supports only a certain set of categories with which you can associate content.
+When using the API to add or update content, you must know the list of available categories as the initial PCD application release, supports only a certain set of categories with which you can associate content.
 
-To view a list of available content categories, you can use the getContentCategories API call.
+To view the list of available content categories, you can use the getContentCategories API call.
 
 *Note:* "Trending" is currently a PCD reserved keyword; it is not a content category.
 
-To get a list of content categories, use the following command:
+To get the list of content categories, use the following command:
 
 <code> POST /ingest/v1/getContentCategories </code>
 
@@ -1094,7 +1094,7 @@ Don't miss out on the most productive event for your online business.",
 
 ## GETTING CONTENT STATUS
 
-The status attribute associated with all the content that is used by the PCD application, enables you to activate and deactivate content without having to add and delete content from the PCD application. You can both obtain the content status and activate the content by ID.
+The status attribute is associated with all the content that is used by PCD application. This attribute enables you to activate and deactivate content without having to add and delete content from the PCD application. You can both obtain the content status and activate the content by ID.
 
 This call enables you to determine the active state of content using the ID.
 
