@@ -21,7 +21,7 @@ To generate a key from Google's firebase console using GCM in android app, follo
 * It will give you a server-key that will be used by backend developers when creating push requests
 * You also need to save the Sender ID given here that will be used on Android for receiving push notifications.
 
-![Prerequisites for using the SDK](blob/master/source/1.png)
+![Prerequisites for using the SDK](https://github.com/Rach20/slate/blob/master/source/1.png)
 
 
 ## File Location to Add Dependencies
